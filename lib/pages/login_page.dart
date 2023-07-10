@@ -1,5 +1,7 @@
+import "package:provider/provider.dart";
 import "package:flutter/material.dart";
 
+import "../services/auth/auth_service.dart";
 import "../components/my_text_field.dart";
 import "../components/my_button.dart";
 
@@ -19,7 +21,22 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void login() {}
+  void login() async {
+    final authService = Provider.of<AuthService>(context, listen: false);
+    
+    try {
+      await authService.signInWithEmailAndPassword(
+        emailController.text, 
+        passwordController.text
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString()),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
