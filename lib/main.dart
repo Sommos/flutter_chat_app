@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../pages/login_page.dart';
+import '../services/auth/login_or_register.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: LoginOrRegister(),
     );
   }
 }
