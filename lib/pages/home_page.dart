@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
       stream: FirebaseFirestore.instance.collection("users").snapshots(),
       builder: (context, snapshot) {
         if(snapshot.hasError) {
-          return const Text("Server Error");
+          return Text("Error ${snapshot.error}");
         }
         if(snapshot.connectionState == ConnectionState.waiting) {
           return const Text("Server Loading...");
